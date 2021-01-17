@@ -1,0 +1,9 @@
+image: ddgg/oop_2020:build_v1
+
+pipelines:
+  default:
+    - step:
+        script:
+          - mkdir build-project && pushd build-project
+          - qmake ../
+          - make -j4
