@@ -39,7 +39,7 @@ public:
      * \param url
      * \throws std::invalid_argument
      */
-    void setUrl(QString url);
+    void setUrl(const QString& url);
     /*!
      * \brief getUrl
      * \return URL String

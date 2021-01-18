@@ -22,7 +22,7 @@ RESTMethod::~RESTMethod()
 
 
 
-void RESTMethod::setUrl(QString url)
+void RESTMethod::setUrl(const QString& url)
 {
     QUrl qUrl{url};
     if (!qUrl.isValid())
