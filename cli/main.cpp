@@ -6,13 +6,13 @@ int main(int argc, char *argv[])
 {
     QCoreApplication a(argc, argv);
 
-    Get get{};
-    get.setUrl("https://google.com/");
-    get.addParameter("name", "test");
-    //get.removeParameter(0);
-    get.run();
+    RESTMethod *method = new Get();
+    Get* get = static_cast<Get*>(method);
+    get->setUrl("https://google.com/");
+    get->addParameter("name", "test");
 
 
+    method->run();
 
     return a.exec();
 }

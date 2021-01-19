@@ -17,10 +17,13 @@ class API_EXPORT RESTMethod : public QObject
 
 protected:
     QNetworkAccessManager networkManager{};
-    QNetworkReply* reply;
     QNetworkRequest request{};
 
-    QString url;
+    bool finished = true;
+    QString url = "";
+    QString headers = "";
+    QString body = "";
+    int statusCode = -1;
 
 public:
     RESTMethod();
@@ -28,9 +31,6 @@ public:
 
     /*!
      * \brief Run rest method with given request method
-     *
-     * Important: While implementing you need to perform nullptr check on
-     * QNetworkReply*. If it's not nullptr, use delete
      */
     virtual void run() = 0;
 
@@ -39,27 +39,52 @@ public:
      * \param url
      * \throws std::invalid_argument
      */
-    void setUrl(const QString& url);
+    virtual void setUrl(const QString& url);
+
     /*!
      * \brief getUrl
      * \return URL String
      */
-    QString getUrl() const;
+    virtual QString getUrl() const;
 
-    QNetworkReply* getLastReply() const;
+    /*!
+     * \brief Gets headers from last reply. Will return empty string if
+     * there was no reply, or reply was not yet received
+     * \return QString
+     */
+    virtual QString getHeaders() const;
+
+    /*!
+     * \brief Gets body from last reply. Will return empty string if
+     * there was no reply, or reply was not yet received
+     * \return QString
+     */
+    virtual QString getBody() const;
+
+    /*!
+     * \brief Gets status code from last reply. Will return -1 if
+     * there was no reply, or reply was not yet received
+     * \return int
+     */
+    virtual int getStatusCode() const;
 
 signals:
     /*!
      * \brief This signal is send every time QNetworkReply has been received completly
      * \param reply
      */
-    void replyReady(QNetworkReply* reply);
+    void replyReady();
+
+    /*!
+     * \brief Send every time run function is called and previous call wasn't ended yet
+     */
+    void alreadyRunning();
 public slots:
     /*!
-     * \brief Handles the finished signal from networkManager
+     * \brief Handles the finished signal from networkManager. Can be overwriten
      * \param reply
      */
-    void receiveReply(QNetworkReply* reply);
+    virtual void receiveReply(QNetworkReply* reply);
 };
 
 #endif // RESTMETHOD_H

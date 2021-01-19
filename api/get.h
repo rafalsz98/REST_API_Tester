@@ -8,7 +8,7 @@ class API_EXPORT Get : public RESTMethod
 {
     QVector<QString> parameters{};
 public:
-    void run();
+    void run() override;
     void addParameter(const QString& field, const QString& argument);
     void removeParameter(const int& position);
 };

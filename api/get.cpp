@@ -4,11 +4,12 @@
 
 void Get::run()
 {
-    if (reply != nullptr)
+    if (!finished)
     {
-        delete reply;
-        reply = nullptr;
+        emit alreadyRunning();
+        return;
     }
+    finished = false;
     if (parameters.length() != 0)
     {
         QString newUrl = url + '?';
@@ -21,8 +22,9 @@ void Get::run()
         QUrl qUrl{newUrl};
         request.setUrl(qUrl);
     }
+
     qDebug() << request.url();
-    reply = networkManager.get(request);
+    networkManager.get(request);
 
     if (parameters.length() != 0)
     {

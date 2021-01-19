@@ -4,8 +4,6 @@
 
 RESTMethod::RESTMethod()
 {
-    reply = nullptr;
-
     QObject::connect(
                 &networkManager,
                 SIGNAL(finished(QNetworkReply*)),
@@ -17,10 +15,8 @@ RESTMethod::RESTMethod()
 
 RESTMethod::~RESTMethod()
 {
-    delete reply;
+
 }
-
-
 
 void RESTMethod::setUrl(const QString& url)
 {
@@ -38,12 +34,30 @@ QString RESTMethod::getUrl() const
     return url;
 }
 
-QNetworkReply* RESTMethod::getLastReply() const
+QString RESTMethod::getHeaders() const
 {
-    return reply;
+    return headers;
+}
+
+QString RESTMethod::getBody() const
+{
+    return body;
+}
+
+int RESTMethod::getStatusCode() const
+{
+    return statusCode;
 }
 
 void RESTMethod::receiveReply(QNetworkReply* reply)
 {
-    emit replyReady(reply);
+    // parse headers
+    body = reply->readAll();
+    statusCode = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
+
+    qDebug() << body << "\n" << statusCode;
+
+    reply->deleteLater();
+    finished = true;
+    emit replyReady();
 }
