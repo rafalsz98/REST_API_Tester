@@ -1,6 +1,8 @@
 #include "restmethod.h"
 
 #include <QObject>
+#include <QJsonDocument>
+#include <QJsonArray>
 
 RESTMethod::RESTMethod()
 {
@@ -51,13 +53,20 @@ int RESTMethod::getStatusCode() const
 
 void RESTMethod::receiveReply(QNetworkReply* reply)
 {
-    // parse headers
-    body = reply->readAll();
+    // parse reply
+    QByteArray json = reply->readAll();
+    body = QString(json);
     statusCode = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
+    headers = parseRawHeadersPairs(reply->rawHeaderPairs());
 
     qDebug() << body << "\n" << statusCode;
 
     reply->deleteLater();
     finished = true;
     emit replyReady();
+}
+
+QString RESTMethod::parseRawHeadersPairs(const QList<QNetworkReply::RawHeaderPair>& list)
+{
+    return "";
 }

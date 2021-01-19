@@ -14,7 +14,7 @@
 class API_EXPORT RESTMethod : public QObject
 {
     Q_OBJECT
-
+    QString parseRawHeadersPairs(const QList<QNetworkReply::RawHeaderPair>& list);
 protected:
     QNetworkAccessManager networkManager{};
     QNetworkRequest request{};
@@ -29,6 +29,19 @@ public:
     RESTMethod();
     virtual ~RESTMethod();
 
+signals:
+    /*!
+     * \brief This signal is send every time QNetworkReply has been received completly
+     * \param reply
+     */
+    void replyReady();
+
+    /*!
+     * \brief Send every time run function is called and previous call wasn't ended yet
+     */
+    void alreadyRunning();
+
+public slots:
     /*!
      * \brief Run rest method with given request method
      */
@@ -68,18 +81,6 @@ public:
      */
     virtual int getStatusCode() const;
 
-signals:
-    /*!
-     * \brief This signal is send every time QNetworkReply has been received completly
-     * \param reply
-     */
-    void replyReady();
-
-    /*!
-     * \brief Send every time run function is called and previous call wasn't ended yet
-     */
-    void alreadyRunning();
-public slots:
     /*!
      * \brief Handles the finished signal from networkManager. Can be overwriten
      * \param reply

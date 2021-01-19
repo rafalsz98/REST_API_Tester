@@ -10,6 +10,8 @@ void Get::run()
         return;
     }
     finished = false;
+    QString prevUrl = url;
+
     if (parameters.length() != 0)
     {
         QString newUrl = url + '?';
@@ -19,8 +21,7 @@ void Get::run()
             newUrl.append('&');
         }
         newUrl.chop(1);
-        QUrl qUrl{newUrl};
-        request.setUrl(qUrl);
+        setUrl(newUrl);
     }
 
     qDebug() << request.url();
@@ -28,8 +29,7 @@ void Get::run()
 
     if (parameters.length() != 0)
     {
-        QUrl qUrl{url};
-        request.setUrl(qUrl);
+        setUrl(prevUrl);
     }
 }
 
