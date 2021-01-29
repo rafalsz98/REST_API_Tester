@@ -13,27 +13,24 @@ void Delete::run()
         return;
     }
     finished = false;
+
     QString prevUrl = url;
 
-    foreach(const QString &param, parameters)
-    {
-        QString newUrl = prevUrl +param+"/delete/json";
-        setUrl(newUrl);
+    setUrl(prevUrl +parameter+"/delete/json");
 
-        qDebug()<< request.url();
-        networkManager.deleteResource(request);
-    }
+    qDebug()<< request.url();
+    networkManager.deleteResource(request);
 
     setUrl(prevUrl);
 }
 
-void Delete::addParameter(const QString& parameter)
+void Delete::addParameter(const QString& par)
 {
-    parameters.append(parameter);
+    parameter=par;
 }
 
-void Delete::removeParameter(const QString &parameter)
+void Delete::removeParameter()
 {
-    parameters.removeOne(parameter);
+    parameter="";
 }
 
