@@ -18,8 +18,8 @@ int main(int argc, char *argv[])
 
     Delete del;
     del.setUrl("https://reqbin.com/");
-    del.addParameter("sample");
-//    del->addParameter("doesnwork");
+    del.setParameter("sample");
+//    del->setParameter("doesnwork");
     del.run();
 
 

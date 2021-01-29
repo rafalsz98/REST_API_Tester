@@ -24,13 +24,7 @@ void Delete::run()
     setUrl(prevUrl);
 }
 
-void Delete::addParameter(const QString& par)
+void Delete::setParameter(const QString& par)
 {
     parameter=par;
 }
-
-void Delete::removeParameter()
-{
-    parameter="";
-}
-
