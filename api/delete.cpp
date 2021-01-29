@@ -18,10 +18,7 @@ void Delete::run()
 
     setUrl(prevUrl +parameter+"/delete/json");
 
-    qDebug()<< request.url();
     networkManager.deleteResource(request);
-
-    setUrl(prevUrl);
 }
 
 void Delete::setParameter(const QString& par)
