@@ -16,15 +16,12 @@ int main(int argc, char *argv[])
 
 //    method->run();
 
-    RESTMethod* method=new Delete();
-    Delete* del=static_cast<Delete*>(method);
-
-    del->setUrl("https://reqbin.com/");
-    del->addParameter("sample");
-    del->addParameter("sample");
+    Delete del;
+    del.setUrl("https://reqbin.com/");
+    del.addParameter("sample");
+    del.addParameter("sample");
 //    del->addParameter("doesnwork");
-
-    del->run();
+    del.run();
 
 
     return a.exec();
