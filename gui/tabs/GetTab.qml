@@ -62,25 +62,28 @@ Item {
         }
 
         delegate: RowLayout {
+            anchors.bottomMargin: 10
             width: parent.width
             spacing: 30
-            Layout.bottomMargin: 10
 
             Text {
                 Layout.leftMargin: 10
+                Layout.bottomMargin: 10
                 font.pixelSize: 17
                 color: "#F3F3F3"
                 text: model.id + 1 + "."
             }
             CustomTextField {
                 Layout.preferredWidth: 150
-                Layout.preferredHeight: 30
+                Layout.preferredHeight: 40
+                Layout.bottomMargin: 10
                 text: model.key
                 onEditingFinished: model.key = text
             }
             CustomTextField {
                 Layout.preferredWidth: 150
-                Layout.preferredHeight: 30
+                Layout.preferredHeight: 40
+                Layout.bottomMargin: 10
                 text: model.value
                 onEditingFinished: model.value = text
             }
