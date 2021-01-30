@@ -6,5 +6,6 @@
         <file>resources/enter_key.png</file>
         <file>TabOption.qml</file>
         <file>tabs/DeleteTab.qml</file>
+        <file>CustomTextField.qml</file>
     </qresource>
 </RCC>

@@ -6,6 +6,8 @@ import QtQuick.Layouts 1.15
 Item {
     required property var methodLoader
     property string name: "test"
+    property string address: ""
+    property var properties
 
     Rectangle {
         anchors.fill: parent
@@ -21,8 +23,7 @@ Item {
             id: mouseArea
             anchors.fill: parent
             onClicked: function() {
-                console.log(name);
-                console.log(methodLoader.sourceComponent);
+                methodLoader.setSource(address, properties)
             }
         }
     }

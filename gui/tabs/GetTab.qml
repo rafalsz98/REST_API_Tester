@@ -2,33 +2,86 @@ import QtQuick 2.0
 import QtQuick.Controls 2.5
 import QtGraphicalEffects 1.15
 import QtQuick.Layouts 1.15
-import ParametersModel 1.0
+import ParameterModel 1.0
+import "../"
 
 
 Item {
-    ListView {
-        implicitWidth: 250
-        implicitHeight: 250
-        anchors.fill: parent
-        clip: false
+    property var runButton
+    property var ipField
 
-        model: ParametersModel {
+    Rectangle {
+        id: labels
+        width: parent.width
+        height: 50
+        color: "transparent"
+        RowLayout {
+            width: parent.width
+            Text {
+                Layout.leftMargin: 10
+                font.pixelSize: 17
+                text: "ID"
+                color: "#F3F3F3"
+            }
+            Text {
+                font.pixelSize: 17
+                text: "Key"
+                color: "#F3F3F3"
+            }
+            Text {
+                font.pixelSize: 17
+                text: "Value"
+                color: "#F3F3F3"
+            }
+            RoundButton {
+                text: "+"
+                palette.button: "#FF1B1C"
+                Layout.rightMargin: 10
+                onClicked: function() {
+                    parameters.insertRow();
+                }
+            }
+        }
+    }
+
+    ListView {
+        anchors.top: labels.bottom
+        width: parent.width
+        height: parent.height - 50
+        clip: true
+
+        model: ParameterModel {
             id: parameters
         }
 
-        delegate: Text {
-//            required property string key
-//            required property string value
-            text: "AAA" + key + " " + value
-        }
-    }
-    Rectangle {
-        width: 100
-        height: 100
-        MouseArea {
-            anchors.fill: parent
-            onClicked: function() {
-                console.log(parameters.getList());
+        delegate: RowLayout {
+            width: parent.width
+            spacing: 30
+            Text {
+                Layout.leftMargin: 10
+                font.pixelSize: 17
+                color: "#F3F3F3"
+                text: model.id + "."
+            }
+            CustomTextField {
+                Layout.preferredWidth: 150
+                Layout.preferredHeight: 30
+                text: model.key
+                onEditingFinished: model.key = text
+            }
+            CustomTextField {
+                Layout.preferredWidth: 150
+                Layout.preferredHeight: 30
+                text: model.value
+                onEditingFinished: model.value = text
+            }
+            RoundButton {
+                text: "-"
+                palette.button: "#FF1B1C"
+                Layout.rightMargin: 10
+                onClicked: function() {
+                    parameters.removeRow(model.id - 1);
+                }
             }
         }
     }

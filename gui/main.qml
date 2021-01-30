@@ -9,6 +9,9 @@ ApplicationWindow {
     visible: true
     title: qsTr("REST API Tester")
     color: "#36413E"
+    Component.onCompleted: function() {
+        methodLoader.setSource("tabs/GetTab.qml", {"runButton": runButton, "ipField": ipField});
+    }
 
     Rectangle {
         id: upperBar
@@ -30,21 +33,13 @@ ApplicationWindow {
     RowLayout {
         anchors.verticalCenter: upperBar.verticalCenter
         spacing: 40
-        Rectangle {
+        CustomTextField {
+            Layout.leftMargin: 60
             Layout.preferredWidth: 300
             Layout.preferredHeight: 40
-            radius: 10
-            color: "#FFFFFF"
-            Layout.leftMargin: 60
-            TextField {
-                id: ipField
-                leftPadding: 10
-                width: parent.width
-                height: parent.height
-                placeholderTextColor: "#707070"
-                placeholderText: qsTr("IP")
-                color: "#707070"
-            }
+            id: ipField
+            placeholderText: "IP"
+            onEditingFinished: console.log(text)
         }
 
         Rectangle {
@@ -87,6 +82,8 @@ ApplicationWindow {
         TabOption{
             methodLoader: methodLoader
             name: "GET"
+            address: "tabs/GetTab.qml"
+            properties: {"runButton": runButton, "ipField": ipField}
             Layout.preferredHeight: 30
             Layout.preferredWidth: parent.width
         }
@@ -128,8 +125,9 @@ ApplicationWindow {
         anchors.left: tabsBar.right
         anchors.bottom: parent.bottom
         Loader {
+            width: parent.width
+            height: parent.height
             id: methodLoader
-            source: "tabs/GetTab.qml"
         }
     }
 

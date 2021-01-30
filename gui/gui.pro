@@ -8,7 +8,7 @@ CONFIG += c++11
 
 SOURCES += \
         main.cpp \
-        parametersmodel.cpp
+        parametermodel.cpp
 
 RESOURCES += qml.qrc
 
@@ -24,7 +24,7 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 HEADERS += \
-    parametersmodel.h
+    parametermodel.h
 
 win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../api/release/ -lapi
 else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../api/debug/ -lapi
