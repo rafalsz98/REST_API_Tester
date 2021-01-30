@@ -14,7 +14,7 @@ public:
 public slots:
     void run() override;
     void addParameter(const QString& field, const QString& argument);
-    void removeParameter(const int& position);
+    void clearParameters();
 };
 
 #endif // POST_H
