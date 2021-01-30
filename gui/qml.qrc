@@ -2,5 +2,8 @@
     <qresource prefix="/">
         <file>main.qml</file>
         <file>qtquickcontrols2.conf</file>
+        <file>tabs/GetTab.qml</file>
+        <file>resources/enter_key.png</file>
+        <file>TabOption.qml</file>
     </qresource>
 </RCC>
