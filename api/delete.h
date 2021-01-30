@@ -7,7 +7,7 @@ class API_EXPORT Delete : public RESTMethod
 {
 
 private:
-    QString parameter;
+    QString parameter="";
 
 public:
     Delete();
