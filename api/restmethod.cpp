@@ -59,8 +59,6 @@ void RESTMethod::receiveReply(QNetworkReply* reply)
     statusCode = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
     headers = parseRawHeadersPairs(reply->rawHeaderPairs());
 
-    qDebug() << body << "\n" << statusCode;
-
     reply->deleteLater();
     finished = true;
     emit replyReady();
@@ -68,5 +66,10 @@ void RESTMethod::receiveReply(QNetworkReply* reply)
 
 QString RESTMethod::parseRawHeadersPairs(const QList<QNetworkReply::RawHeaderPair>& list)
 {
-    return "";
+    QString head;
+    foreach(const QNetworkReply::RawHeaderPair& pair, list)
+    {
+        head+=QString(pair.first) +" "+  QString(pair.second) + '\n';
+    }
+    return head;
 }
