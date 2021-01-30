@@ -25,3 +25,10 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 HEADERS += \
     parametersmodel.h
+
+win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../api/release/ -lapi
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../api/debug/ -lapi
+else:unix: LIBS += -L$$OUT_PWD/../api/ -lapi
+
+INCLUDEPATH += $$PWD/../api
+DEPENDPATH += $$PWD/../api
