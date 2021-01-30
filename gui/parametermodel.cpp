@@ -1,4 +1,5 @@
 #include "parametermodel.h"
+#include <QtDebug>
 
 ParameterModel::ParameterModel(QObject *parent)
     : QAbstractListModel(parent)
@@ -59,17 +60,18 @@ Qt::ItemFlags ParameterModel::flags(const QModelIndex &index) const
 
 void ParameterModel::insertRow()
 {
-    auto index = list.length() - 1;
+    auto index = list.length();
     beginInsertRows(QModelIndex(), index, index);
-    list.push_back({index + 1, "", ""});
+    list.push_back({index, "", ""});
     endInsertRows();
 }
 
-void ParameterModel::removeRow(int row)
+void ParameterModel::clearRows()
 {
-    beginRemoveRows(QModelIndex(), row, row);
-    list.removeAt(row);
+    beginRemoveRows(QModelIndex(), 0, list.length() - 1);
+    list.clear();
     endRemoveRows();
+    insertRow();
 }
 
 QHash<int, QByteArray> ParameterModel::roleNames() const

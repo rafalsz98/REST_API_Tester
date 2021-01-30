@@ -2,6 +2,7 @@ import QtQuick 2.12
 import QtQuick.Controls 2.5
 import QtGraphicalEffects 1.15
 import QtQuick.Layouts 1.15
+import "./components"
 
 ApplicationWindow {
     width: 640
@@ -34,10 +35,10 @@ ApplicationWindow {
         anchors.verticalCenter: upperBar.verticalCenter
         spacing: 40
         CustomTextField {
+            id: ipField
             Layout.leftMargin: 60
             Layout.preferredWidth: 300
             Layout.preferredHeight: 40
-            id: ipField
             placeholderText: "IP"
             onEditingFinished: console.log(text)
         }

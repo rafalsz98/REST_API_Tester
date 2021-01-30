@@ -4,8 +4,9 @@
         <file>qtquickcontrols2.conf</file>
         <file>tabs/GetTab.qml</file>
         <file>resources/enter_key.png</file>
-        <file>TabOption.qml</file>
         <file>tabs/DeleteTab.qml</file>
-        <file>CustomTextField.qml</file>
+        <file>components/CustomTextField.qml</file>
+        <file>components/TabOption.qml</file>
+        <file>resources/clear.png</file>
     </qresource>
 </RCC>

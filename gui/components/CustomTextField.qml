@@ -10,6 +10,15 @@ Item {
     property string placeholderText: "Placeholder text"
     property string text: ""
 
+    DropShadow {
+        anchors.fill: txt
+        source: txt
+        horizontalOffset: 0
+        verticalOffset: 3
+        opacity: 0.2
+        radius: 6
+    }
+
     TextField
     {
         id: txt
@@ -21,6 +30,7 @@ Item {
         color: "#707070"
         background: Rectangle
         {
+            id: innerRect
             radius:10
         }
         onEditingFinished: () => {
@@ -28,11 +38,3 @@ Item {
         }
     }
 }
-
-
-
-/*##^##
-Designer {
-    D{i:0;autoSize:true;height:480;width:640}
-}
-##^##*/

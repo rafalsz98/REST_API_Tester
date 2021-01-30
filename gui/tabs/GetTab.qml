@@ -3,7 +3,8 @@ import QtQuick.Controls 2.5
 import QtGraphicalEffects 1.15
 import QtQuick.Layouts 1.15
 import ParameterModel 1.0
-import "../"
+
+import "../components"
 
 
 Item {
@@ -17,6 +18,7 @@ Item {
         color: "transparent"
         RowLayout {
             width: parent.width
+            spacing: 0
             Text {
                 Layout.leftMargin: 10
                 font.pixelSize: 17
@@ -35,10 +37,15 @@ Item {
             }
             RoundButton {
                 text: "+"
-                palette.button: "#FF1B1C"
-                Layout.rightMargin: 10
                 onClicked: function() {
                     parameters.insertRow();
+                }
+            }
+            RoundButton {
+                icon.source: "../resources/clear.png"
+                icon.width: 15
+                onClicked: function() {
+                    parameters.clearRows();
                 }
             }
         }
@@ -57,11 +64,13 @@ Item {
         delegate: RowLayout {
             width: parent.width
             spacing: 30
+            Layout.bottomMargin: 10
+
             Text {
                 Layout.leftMargin: 10
                 font.pixelSize: 17
                 color: "#F3F3F3"
-                text: model.id + "."
+                text: model.id + 1 + "."
             }
             CustomTextField {
                 Layout.preferredWidth: 150
@@ -74,14 +83,6 @@ Item {
                 Layout.preferredHeight: 30
                 text: model.value
                 onEditingFinished: model.value = text
-            }
-            RoundButton {
-                text: "-"
-                palette.button: "#FF1B1C"
-                Layout.rightMargin: 10
-                onClicked: function() {
-                    parameters.removeRow(model.id - 1);
-                }
             }
         }
     }

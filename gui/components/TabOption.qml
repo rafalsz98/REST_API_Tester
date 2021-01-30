@@ -23,14 +23,8 @@ Item {
             id: mouseArea
             anchors.fill: parent
             onClicked: function() {
-                methodLoader.setSource(address, properties)
+                methodLoader.setSource("../" + address, properties)
             }
         }
     }
 }
-
-/*##^##
-Designer {
-    D{i:0;autoSize:true;height:480;width:640}
-}
-##^##*/

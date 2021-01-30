@@ -17,7 +17,8 @@ struct Parameter {
 class ParameterModel : public QAbstractListModel
 {
     Q_OBJECT
-    QList<Parameter> list{{1, "", ""}};
+    QList<Parameter> list{{0, "", ""}};
+    int currentId = 1;
 public:
     explicit ParameterModel(QObject *parent = nullptr);
 
@@ -43,12 +44,9 @@ public:
 public slots:
     void insertRow();
 
-    void removeRow(int row);
+    void clearRows();
 
     QList<Parameter> getList();
-
-
-private:
 };
 
 #endif // PARAMETERMODEL_H
