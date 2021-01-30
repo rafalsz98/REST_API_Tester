@@ -7,8 +7,8 @@
 
 class API_EXPORT Post : public RESTMethod
 {
-    QVector<QJsonDocument> parameters{};
-    QByteArray vectorRefactoring(const QVector<QJsonDocument>);
+    QVector<QString> parameters{};
+    QByteArray vectorRefactoring(const QVector<QString>);
 public:
 
 public slots:

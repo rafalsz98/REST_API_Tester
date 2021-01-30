@@ -20,10 +20,8 @@ void Post::run()
 
 void Post::addParameter(const QString& field, const QString& argument)
 {
-    QString data = "{\"" + field + "\":\"" + argument + "\"}";
-    QJsonDocument doc = QJsonDocument::fromJson(data.toUtf8());
-
-    parameters.append(doc);
+    QString data = "\"" + field + "\":\"" + argument + "\"";
+    parameters.append(data);
 }
 
 void Post::removeParameter(const int& position)
@@ -31,13 +29,16 @@ void Post::removeParameter(const int& position)
     parameters.removeAt(position);
 }
 
-QByteArray Post::vectorRefactoring(QVector<QJsonDocument> params)
+QByteArray Post::vectorRefactoring(QVector<QString> params)
 {
+    QString paramsString = "{";
     QByteArray retVal;
     while(!params.isEmpty())
     {
-        retVal += params.takeFirst().toJson();
-        if(!params.isEmpty()) retVal +=',';
+        paramsString += params.takeFirst();
+        if(!params.isEmpty()) paramsString +=',';
     }
+    paramsString += "}";
+    retVal += paramsString;
     return retVal;
 }
