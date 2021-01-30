@@ -12,12 +12,14 @@ CONFIG += c++11
 
 SOURCES += \
     get.cpp \
+    post.cpp \
     restmethod.cpp
 
 
 HEADERS += \
     api_global.h \
     get.h \
+    post.h \
     restmethod.h
 
 
