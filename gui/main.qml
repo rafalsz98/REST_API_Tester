@@ -1,23 +1,136 @@
 import QtQuick 2.12
 import QtQuick.Controls 2.5
+import QtGraphicalEffects 1.15
+import QtQuick.Layouts 1.15
 
 ApplicationWindow {
     width: 640
     height: 480
     visible: true
-    title: qsTr("Scroll")
+    title: qsTr("REST API Tester")
+    color: "#36413E"
 
-    ScrollView {
-        anchors.fill: parent
+    Rectangle {
+        id: upperBar
+        width: parent.width
+        height: 100
+        color: "#5D5E60"
+    }
 
-        ListView {
-            id: listView
-            width: parent.width
-            model: 20
-            delegate: ItemDelegate {
-                text: "Item " + (index + 1)
-                width: listView.width
+    DropShadow {
+        anchors.fill: upperBar
+        source: upperBar
+        horizontalOffset: 0
+        verticalOffset: 3
+        opacity: 0.2
+        radius: 6
+        samples: 8
+    }
+
+    RowLayout {
+        anchors.verticalCenter: upperBar.verticalCenter
+        spacing: 40
+        Rectangle {
+            Layout.preferredWidth: 300
+            Layout.preferredHeight: 40
+            radius: 10
+            color: "#FFFFFF"
+            Layout.leftMargin: 60
+            TextField {
+                id: ipField
+                leftPadding: 10
+                width: parent.width
+                height: parent.height
+                placeholderTextColor: "#707070"
+                placeholderText: qsTr("IP")
+                color: "#707070"
+            }
+        }
+
+        Rectangle {
+            Layout.preferredHeight: 30
+            Layout.preferredWidth: 30
+            color: "#8AC926"
+            radius: 10
+            Image {
+                source: "resources/enter_key.png"
+                anchors.centerIn: parent
+            }
+            MouseArea {
+                id: runButton
+                anchors.fill: parent
             }
         }
     }
+
+    DropShadow {
+        anchors.fill: tabsBar
+        source: tabsBar
+        horizontalOffset: 3
+        verticalOffset: 0
+        opacity: 0.2
+        radius: 6
+    }
+
+    Rectangle {
+        id: tabsBar
+        anchors.bottom: parent.bottom
+        width: parent.width / 4
+        height: parent.height - upperBar.height
+        color: "#8D8D92"
+    }
+
+    ColumnLayout {
+        anchors.top: tabsBar.top
+        width: tabsBar.width
+        spacing: -1
+        TabOption{
+            methodLoader: methodLoader
+            name: "GET"
+            Layout.preferredHeight: 30
+            Layout.preferredWidth: parent.width
+        }
+        TabOption{
+            methodLoader: methodLoader
+            name: "POST"
+            Layout.preferredHeight: 30
+            Layout.preferredWidth: parent.width
+        }
+        TabOption{
+            methodLoader: methodLoader
+            name: "DELETE"
+            Layout.preferredHeight: 30
+            Layout.preferredWidth: parent.width
+        }
+        TabOption{
+            methodLoader: methodLoader
+            name: "PUT"
+            Layout.preferredHeight: 30
+            Layout.preferredWidth: parent.width
+        }
+        TabOption{
+            methodLoader: methodLoader
+            name: "Unit Tests"
+            Layout.preferredHeight: 30
+            Layout.preferredWidth: parent.width
+        }
+        TabOption{
+            methodLoader: methodLoader
+            name: "Results"
+            Layout.preferredHeight: 50
+            Layout.preferredWidth: parent.width
+        }
+    }
+
+    Item {
+        width: 3 * parent.width / 4
+        height: tabsBar.height
+        anchors.left: tabsBar.right
+        anchors.bottom: parent.bottom
+        Loader {
+            id: methodLoader
+            source: "tabs/GetTab.qml"
+        }
+    }
+
 }
