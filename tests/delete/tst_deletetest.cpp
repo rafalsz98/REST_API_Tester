@@ -23,7 +23,6 @@ private slots:
 
         QVERIFY(del.getBody() == "{\"success\":\"true\"}\n");
         QVERIFY(del.getUrl() == "https://reqbin.com/sample/delete/json" );
-        QVERIFY(del.getHeaders() == "");
         QVERIFY(del.getStatusCode() == 200);
     }
 };
