@@ -39,7 +39,7 @@ public slots:
 
     void clearRows();
 
-    QList<Parameter> getList();
+    QVariant getList();
 };
 
 #endif // PARAMETERMODEL_H

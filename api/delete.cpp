@@ -26,7 +26,7 @@ void Delete::setParameter(const QString& par)
     parameter=par;
 }
 
-void Delete::parseParameters(QList<Parameter> list)
+void Delete::parseParameters(QVariant list)
 {
 
 }

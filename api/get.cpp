@@ -34,11 +34,14 @@ void Get::run()
     }
 }
 
-void Get::parseParameters(QList<Parameter> list)
+void Get::parseParameters(QVariant var)
 {
-    foreach(const Parameter& parameter, list)
+    QList<QVariant> list = var.toList();
+    foreach(const QVariant& varParameter, list)
     {
+        Parameter parameter = varParameter.value<Parameter>();
         QString parsed = parameter.key + "=" + parameter.value;
         parameters.push_back(parsed);
+        qDebug() << parsed;
     }
 }

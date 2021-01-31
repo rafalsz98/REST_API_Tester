@@ -83,7 +83,9 @@ QHash<int, QByteArray> ParameterModel::roleNames() const
     return names;
 }
 
-QList<Parameter> ParameterModel::getList()
+QVariant ParameterModel::getList()
 {
-    return list;
+    QVariant var;
+    var.setValue(list);
+    return var;
 }

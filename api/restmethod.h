@@ -50,9 +50,9 @@ public slots:
 
     /*!
      * \brief Parse parameters that are received from UI model
-     * \param list
+     * \param QVariant, which is QList<Parameter>
      */
-    virtual void parseParameters(QList<Parameter> list) = 0;
+    virtual void parseParameters(QVariant list) = 0;
 
     /*!
      * \brief Sets url in request
