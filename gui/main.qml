@@ -92,7 +92,7 @@ ApplicationWindow {
             methodLoader: methodLoader
             name: "POST"
             address: "tabs/PostTab.qml"
-            properties: {"runButton": runButton, "ipField": ipField}
+            properties: {"runButton": runButton, "ipField": ipField, "methodLoader": methodLoader}
             Layout.preferredHeight: 30
             Layout.preferredWidth: parent.width
         }
@@ -100,7 +100,7 @@ ApplicationWindow {
             methodLoader: methodLoader
             name: "DELETE"
             address: "tabs/DeleteTab.qml"
-            properties: {"runButton": runButton, "ipField": ipField}
+            properties: {"runButton": runButton, "ipField": ipField, "methodLoader": methodLoader}
             Layout.preferredHeight: 30
             Layout.preferredWidth: parent.width
         }
