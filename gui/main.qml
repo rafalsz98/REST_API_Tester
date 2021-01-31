@@ -107,6 +107,8 @@ ApplicationWindow {
         TabOption{
             methodLoader: methodLoader
             name: "PUT"
+            address: "tabs/PutTab.qml"
+            properties: {"runButton": runButton, "ipField": ipField}
             Layout.preferredHeight: 30
             Layout.preferredWidth: parent.width
         }
