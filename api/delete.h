@@ -15,7 +15,6 @@ public:
 
 public slots:
     void run() override;
-    void parseParameters(const QString&);
     void parseParameters(QVariant list) override;
 };
 
