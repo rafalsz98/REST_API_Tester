@@ -2,7 +2,7 @@
 #define RESTMETHOD_H
 
 #include "api_global.h"
-#include "Parameter.h"
+#include "parameter.h"
 
 #include <QtNetwork/QNetworkAccessManager>
 #include <QtNetwork/QNetworkReply>

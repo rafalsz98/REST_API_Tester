@@ -16,22 +16,20 @@ void Post::run()
 
     qDebug() << request.url();
     networkManager.post(request, fixedParameters);
+
+    if (parameters.length() != 0)
+        parameters.clear();
 }
 
-void Post::addParameter(const QString& field, const QString& argument)
+void Post::parseParameters(QVariant var)
 {
-    QString data = "\"" + field + "\":\"" + argument + "\"";
-    parameters.append(data);
-}
-
-void Post::parseParameters(QVariant list)
-{
-
-}
-
-void Post::clearParameters()
-{
-    parameters.clear();
+    QList<QVariant> list = var.toList();
+    foreach(const QVariant& varParameter, list)
+    {
+        Parameter parameter = varParameter.value<Parameter>();
+        QString data = "\"" + parameter.key + "\":\"" + parameter.value + "\"";
+        parameters.push_back(data);
+    }
 }
 
 QByteArray Post::vectorRefactoring(QVector<QString> params)
@@ -44,6 +42,6 @@ QByteArray Post::vectorRefactoring(QVector<QString> params)
         if(!params.isEmpty()) paramsString +=',';
     }
     paramsString += "}";
-    retVal += paramsString;
+    retVal = paramsString.toUtf8();
     return retVal;
 }
