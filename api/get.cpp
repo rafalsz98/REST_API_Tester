@@ -24,7 +24,6 @@ void Get::run()
         setUrl(newUrl);
     }
 
-    qDebug() << request.url();
     networkManager.get(request);
 
     if (parameters.length() != 0)
@@ -45,6 +44,5 @@ void Get::parseParameters(QVariant var)
         }
         QString parsed = parameter.key + "=" + parameter.value;
         parameters.push_back(parsed);
-        qDebug() << parsed;
     }
 }
