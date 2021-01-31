@@ -1,9 +1,11 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
+#include <QQmlContext>
 #include "parametermodel.h"
 #include "delete.h"
 #include "post.h"
 #include "get.h"
+#include "appmanager.h"
 
 int main(int argc, char *argv[])
 {
@@ -17,8 +19,12 @@ int main(int argc, char *argv[])
     qmlRegisterType<Get>("Get", 1, 0, "Get");
     qmlRegisterType<Delete>("Delete", 1, 0, "Delete");
     qmlRegisterType<Post>("Post", 1, 0, "Post");
+    qmlRegisterUncreatableType<AppManager>("AppManager", 1, 0, "AppManager", QStringLiteral("Only one per app"));
+
+    AppManager manager;
 
     QQmlApplicationEngine engine;
+    engine.rootContext()->setContextProperty(QStringLiteral("AppManager"), &manager);
     engine.addImportPath("qrc:/components");
     const QUrl url(QStringLiteral("qrc:/main.qml"));
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,

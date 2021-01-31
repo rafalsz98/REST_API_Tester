@@ -8,10 +8,6 @@ import "../components"
 
 
 Item {
-    property var statusCodeProperty
-    property var headerProperty
-    property var bodyProperty
-
     Column {
         id: cols
         anchors.fill: parent
@@ -55,7 +51,7 @@ Item {
                     right: parent.right;
                     rightMargin: 10;
                 }
-                text: statusCodeProperty
+                text: AppManager.statusCode
             }
         }
 
@@ -97,7 +93,7 @@ Item {
                     right: parent.right;
                     rightMargin: 10;
                 }
-                text: headerProperty
+                text: AppManager.headers
             }
         }
 
@@ -139,7 +135,7 @@ Item {
                     right: parent.right;
                     rightMargin: 10;
                 }
-                text: bodyProperty
+                text: AppManager.body
             }
         }
     }

@@ -24,6 +24,7 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 HEADERS += \
+    appmanager.h \
     parametermodel.h
 
 win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../api/release/ -lapi

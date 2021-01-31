@@ -16,11 +16,10 @@ Item {
     Get {
         id: get
         onReplyReady: function() {
-            //methodLoader.setSource("ResultsTab.qml", {});
-            console.log(get.getBody());
-            console.log(get.getHeaders());
-            console.log(get.getStatusCode());
-            console.log(get.getUrl());
+            AppManager.body = get.getBody();
+            AppManager.headers = get.getHeaders();
+            AppManager.statusCode = get.getStatusCode();
+            methodLoader.setSource("ResultsTab.qml", {"x": "x"});
         }
         onAlreadyRunning: function() {
             console.log("already running!");
