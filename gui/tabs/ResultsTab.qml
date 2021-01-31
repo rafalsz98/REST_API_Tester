@@ -32,7 +32,7 @@ Item {
             id: statusData
             width: parent.width - 50
             height: 33
-            color: "transparent"
+            color: "black"
             anchors.top: statusLabel.bottom;
             x: 20
             TextEdit {
@@ -74,26 +74,33 @@ Item {
             id: headerData
             width: parent.width - 50
             height: 110
-            color: "transparent"
+            color: "black"
             anchors.top: headerLabel.bottom;
             x: 20
-            TextEdit {
-                id: headerDataText
-                readOnly: true
-                focus: true
-                selectByMouse: true
-                font.pointSize: 8;
-                wrapMode: TextEdit.WrapAtWordBoundaryOrAnywhere;
-                color: "white";
-                anchors {
-                    top: parent.top;
-                    topMargin: 8;
-                    left: parent.left;
-                    leftMargin: 10;
-                    right: parent.right;
-                    rightMargin: 10;
+
+            ScrollView {
+                id: scrollheader
+                anchors.fill: parent
+                clip : true
+
+                TextEdit {
+                    id: headerDataText
+                    readOnly: true
+                    focus: true
+                    selectByMouse: true
+                    font.pointSize: 8;
+                    wrapMode: TextEdit.WrapAtWordBoundaryOrAnywhere;
+                    color: "white";
+                    anchors {
+                        top: scrollheader.top;
+                        topMargin: 8;
+                        left: parent.left;
+                        leftMargin: 10;
+                        right: parent.right;
+                        rightMargin: 10;
+                    }
+                    text: AppManager.headers
                 }
-                text: AppManager.headers
             }
         }
 
@@ -115,27 +122,34 @@ Item {
         Rectangle {
             id: bodyData
             width: parent.width - 50
-            height: 70
-            color: "transparent"
+            height: 200
+            color: "black"
             anchors.top: bodyLabel.bottom;
             x: 20
-            TextEdit {
-                id: bodyDataText
-                readOnly: true
-                focus: true
-                selectByMouse: true
-                font.pointSize: 8;
-                wrapMode: TextEdit.WrapAtWordBoundaryOrAnywhere;
-                color: "white";
-                anchors {
-                    top: parent.top;
-                    topMargin: 8;
-                    left: parent.left;
-                    leftMargin: 10;
-                    right: parent.right;
-                    rightMargin: 10;
+
+            ScrollView {
+                id: scrollbody
+                anchors.fill: parent
+                clip: true
+
+                TextEdit {
+                    id: bodyDataText
+                    readOnly: true
+                    focus: true
+                    selectByMouse: true
+                    font.pointSize: 8;
+                    wrapMode: TextEdit.WrapAtWordBoundaryOrAnywhere;
+                    color: "white";
+                    anchors {
+                        top: parent.top;
+                        topMargin: 8;
+                        left: parent.left;
+                        leftMargin: 10;
+                        right: parent.right;
+                        rightMargin: 10;
+                    }
+                    text: AppManager.body
                 }
-                text: AppManager.body
             }
         }
     }

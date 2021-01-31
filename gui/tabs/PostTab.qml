@@ -12,10 +12,29 @@ import "../components"
 Item {
     property var runButton
     property var ipField
+    property var methodLoader
 
     Post
     {
         id: post
+        onReplyReady: function() {
+            AppManager.body = post.getBody();
+            AppManager.headers = post.getHeaders();
+            AppManager.statusCode = post.getStatusCode();
+            methodLoader.setSource("ResultsTab.qml", {"x": "x"});
+        }
+        onAlreadyRunning: function() {
+            console.log("already running!");
+        }
+    }
+
+    Connections {
+        target: runButton
+        function onClicked(_) {
+            post.setUrl(ipField.text);
+            post.parseParameters(parameters.getList());
+            post.run();
+        }
     }
 
     Rectangle {
@@ -113,119 +132,3 @@ Item {
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-////import QtQuick 2.0
-////import QtQuick.Controls 2.2
-////import QtQuick.Layouts 1.3
-
-
-
-//Frame
-//{
-//    Post
-//    {
-//        id: post
-//    }
-
-////    Connections
-////    {
-////        target: runButton
-////        onClicked:()=>
-////                  {
-////                      Post.setUrl("https://httpbin.org/post");
-////                      Post.addParameter("who", "Student");
-////                      Post.run();
-////                  }
-////    }
-
-//    ListView
-//    {
-//        implicitHeight: 250
-//        implicitWidth: 450
-//        anchors.fill: parent
-//        clip: true
-//        spacing: 10
-
-//        model: 2
-//        delegate: RowLayout
-//        {
-//            width: parent.width
-
-//            TextField
-//            {
-//                id: keyField
-//                Layout.fillWidth: true
-//                implicitWidth: 20
-//                height: 43
-//                text: qsTr("")
-//                placeholderText: qsTr("key")
-//                color: "black"
-//                background: Rectangle
-//                {
-//                    radius:100
-//                }
-//                leftPadding: 10
-//                rightPadding: 10
-//                topPadding:10
-//                bottomPadding: 10
-//            }
-
-//            TextField
-//            {
-//                id: valField
-//                Layout.fillWidth: true
-//                implicitWidth: 20
-//                height: 43
-//                text: qsTr("")
-//                placeholderText: qsTr("value")
-//                color: "black"
-//                background: Rectangle
-//                {
-//                    radius:100
-//                }
-//                leftPadding: 10
-//                rightPadding: 10
-//                topPadding:10
-//                bottomPadding: 10
-//            }
-
-//            RoundButton
-//            {
-//                id: roundButton
-//                text: " - "
-//                background: Rectangle
-//                {
-//                    color:"#a11f1d"
-//                    radius:31.4
-//                }
-//                leftPadding:14
-//                rightPadding:14
-
-//                Layout.fillWidth: false
-
-//                onClicked:function()
-//                {
-////                    onClicked: toDoList.remoweItem()
-//                }
-//            }
-//        }
-//    }
-//}
