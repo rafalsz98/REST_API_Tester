@@ -5,14 +5,7 @@
 #include <QList>
 #include <QString>
 #include <QByteArray>
-
-struct Parameter {
-    int ID;
-    QString key;
-    QString value;
-    Parameter(int ID, QString key, QString value) :
-        ID(ID), key(key), value(value) {}
-};
+#include "Parameter.h"
 
 class ParameterModel : public QAbstractListModel
 {

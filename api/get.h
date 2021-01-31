@@ -2,7 +2,9 @@
 #define GET_H
 
 #include "restmethod.h"
+#include "Parameter.h"
 #include <QVector>
+#include <QList>
 
 class API_EXPORT Get : public RESTMethod
 {
@@ -11,8 +13,7 @@ public:
 
 public slots:
     void run() override;
-    void addParameter(const QString& field, const QString& argument);
-    void removeParameter(const int& position);
+    void parseParameters(QList<Parameter> list);
 };
 
 #endif // GET_H

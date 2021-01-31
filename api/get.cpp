@@ -30,16 +30,15 @@ void Get::run()
     if (parameters.length() != 0)
     {
         setUrl(prevUrl);
+        parameters.clear();
     }
 }
 
-void Get::addParameter(const QString& field, const QString& argument)
+void Get::parseParameters(QList<Parameter> list)
 {
-    QString param = field + '=' + argument;
-    parameters.append(param);
-}
-
-void Get::removeParameter(const int& position)
-{
-    parameters.removeAt(position);
+    foreach(const Parameter& parameter, list)
+    {
+        QString parsed = parameter.key + "=" + parameter.value;
+        parameters.push_back(parsed);
+    }
 }
