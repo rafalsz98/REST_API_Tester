@@ -5,6 +5,7 @@
 #include "delete.h"
 #include "post.h"
 #include "get.h"
+#include "put.h"
 #include "appmanager.h"
 
 int main(int argc, char *argv[])
@@ -19,6 +20,8 @@ int main(int argc, char *argv[])
     qmlRegisterType<Get>("Get", 1, 0, "Get");
     qmlRegisterType<Delete>("Delete", 1, 0, "Delete");
     qmlRegisterType<Post>("Post", 1, 0, "Post");
+    qmlRegisterType<Put>("Put", 1, 0, "Put");
+
     qmlRegisterUncreatableType<AppManager>("AppManager", 1, 0, "AppManager", QStringLiteral("Only one per app"));
 
     AppManager manager;
