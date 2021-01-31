@@ -24,6 +24,11 @@ void Post::addParameter(const QString& field, const QString& argument)
     parameters.append(data);
 }
 
+void Post::parseParameters(QList<Parameter> list)
+{
+
+}
+
 void Post::clearParameters()
 {
     parameters.clear();

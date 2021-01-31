@@ -13,7 +13,7 @@ public:
 
 public slots:
     void run() override;
-    void parseParameters(QList<Parameter> list);
+    void parseParameters(QList<Parameter> list) override;
 };
 
 #endif // GET_H

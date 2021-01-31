@@ -2,6 +2,7 @@
 #define RESTMETHOD_H
 
 #include "api_global.h"
+#include "Parameter.h"
 
 #include <QtNetwork/QNetworkAccessManager>
 #include <QtNetwork/QNetworkReply>
@@ -46,6 +47,12 @@ public slots:
      * \brief Run rest method with given request method
      */
     virtual void run() = 0;
+
+    /*!
+     * \brief Parse parameters that are received from UI model
+     * \param list
+     */
+    virtual void parseParameters(QList<Parameter> list) = 0;
 
     /*!
      * \brief Sets url in request
