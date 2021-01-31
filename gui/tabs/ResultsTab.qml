@@ -8,11 +8,11 @@ import "../components"
 
 
 Item {
-    Column {
-        id: cols
+    Rectangle {
+        id: firstone
+        color: "transparent"
         anchors.fill: parent
         anchors.margins: 10
-        spacing: 3
 
         Rectangle {
             id: statusLabel
@@ -61,6 +61,7 @@ Item {
             height: 25
             color: "transparent"
             anchors.top: statusData.bottom;
+            anchors.topMargin: 6;
             RowLayout {
                 Text {
                     font.pixelSize: 17
@@ -89,10 +90,9 @@ Item {
                     focus: true
                     selectByMouse: true
                     font.pointSize: 8;
-                    wrapMode: TextEdit.WrapAtWordBoundaryOrAnywhere;
                     color: "white";
                     anchors {
-                        top: scrollheader.top;
+                        top: parent.top;
                         topMargin: 8;
                         left: parent.left;
                         leftMargin: 10;
@@ -110,6 +110,7 @@ Item {
             height: 25
             color: "transparent"
             anchors.top: headerData.bottom;
+            anchors.topMargin: 6;
             RowLayout {
                 Text {
                     font.pixelSize: 17
@@ -122,7 +123,7 @@ Item {
         Rectangle {
             id: bodyData
             width: parent.width - 50
-            height: 200
+            height: 225
             color: "black"
             anchors.top: bodyLabel.bottom;
             x: 20
@@ -138,7 +139,6 @@ Item {
                     focus: true
                     selectByMouse: true
                     font.pointSize: 8;
-                    wrapMode: TextEdit.WrapAtWordBoundaryOrAnywhere;
                     color: "white";
                     anchors {
                         top: parent.top;
@@ -148,7 +148,7 @@ Item {
                         right: parent.right;
                         rightMargin: 10;
                     }
-                    text: AppManager.body
+                    text: AppManager.body + "\n";
                 }
             }
         }
