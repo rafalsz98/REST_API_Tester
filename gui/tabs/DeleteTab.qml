@@ -1,6 +1,7 @@
-import QtQuick 2.12
+import QtQuick 2.0
 import QtQuick.Controls 2.5
-import QtQuick.Layouts 1.3
+import QtGraphicalEffects 1.15
+import QtQuick.Layouts 1.15
 import ParameterModel 1.0
 import Delete 1.0
 
@@ -10,10 +11,22 @@ Item
 {
     property var runButton
     property var ipField
+    property var methodLoader
 
     Delete
     {
         id:del
+        onReplyReady: function()
+        {
+            AppManager.body = del.getBody();
+            AppManager.headers = del.getHeaders();
+            AppManager.statusCode = del.getStatusCode();
+            methodLoader.setSource("ResultsTab.qml", {"x": "x"});
+        }
+        onAlreadyRunning: function()
+        {
+            console.log("already running!");
+        }
     }
 
     Connections
@@ -28,12 +41,14 @@ Item
         }
     }
 
-    Rectangle {
+    Rectangle
+    {
         id: titleBar
         width: parent.width
         height: 30
         color: "transparent"
-        Text {
+        Text
+        {
             anchors.verticalCenter: titleBar.verticalCenter
             anchors.horizontalCenter: titleBar.horizontalCenter
             text: "DELETE"
@@ -42,7 +57,8 @@ Item
         }
     }
 
-    Rectangle {
+    Rectangle
+    {
         id: labels
         anchors.top: titleBar.bottom
         width: parent.width
@@ -61,21 +77,25 @@ Item
         }
     }
 
-    ListView {
+    ListView
+    {
         anchors.top: labels.bottom
         width: parent.width
         height: parent.height - 50
         clip: true
 
-        model: ParameterModel {
+        model: ParameterModel
+        {
             id: parameters
         }
 
-        delegate: RowLayout {
+        delegate: RowLayout
+        {
             anchors.bottomMargin: 10
             width: parent.width
             spacing: 30
-            CustomTextField {
+            CustomTextField
+            {
                 width: parent.width-20
                 Layout.preferredHeight: 40
                 Layout.bottomMargin: 10
