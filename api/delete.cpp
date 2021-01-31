@@ -24,9 +24,5 @@ void Delete::run()
 void Delete::parseParameters(QVariant var)
 {
     QList<QVariant> list = var.toList();
-    foreach(const QVariant& varParameter, list)
-    {
-        Parameter parameter = varParameter.value<Parameter>();
-        this->parameter = parameter.key;
-    }
+    this->parameter=list.first().value<Parameter>().key;
 }
