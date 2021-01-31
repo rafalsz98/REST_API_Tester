@@ -22,7 +22,6 @@ Item {
     TextField
     {
         id: txt
-        leftPadding: 15
         anchors.fill: parent
         placeholderText: item1.placeholderText
         text: item1.text
@@ -36,5 +35,9 @@ Item {
         onEditingFinished: () => {
              item1.editingFinished(txt.text);
         }
+        leftPadding: 10
+        rightPadding: 10
+        topPadding:10
+        bottomPadding: 10
     }
 }

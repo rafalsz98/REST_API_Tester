@@ -8,5 +8,7 @@
         <file>components/CustomTextField.qml</file>
         <file>components/TabOption.qml</file>
         <file>resources/clear.png</file>
+        <file>tabs/PostTab.qml</file>
+        <file>tabs/ResultsTab.qml</file>
     </qresource>
 </RCC>

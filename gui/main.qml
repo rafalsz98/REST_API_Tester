@@ -6,7 +6,7 @@ import "./components"
 
 ApplicationWindow {
     width: 640
-    height: 480
+    height: 580
     visible: true
     title: qsTr("REST API Tester")
     color: "#36413E"
@@ -91,6 +91,8 @@ ApplicationWindow {
         TabOption{
             methodLoader: methodLoader
             name: "POST"
+            address: "tabs/PostTab.qml"
+            properties: {"runButton": runButton, "ipField": ipField}
             Layout.preferredHeight: 30
             Layout.preferredWidth: parent.width
         }
@@ -115,6 +117,8 @@ ApplicationWindow {
         TabOption{
             methodLoader: methodLoader
             name: "Results"
+            address: "tabs/ResultsTab.qml"
+            properties: {"runButton": runButton, "ipField": ipField}
             Layout.preferredHeight: 50
             Layout.preferredWidth: parent.width
         }
