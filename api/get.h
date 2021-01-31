@@ -2,7 +2,7 @@
 #define GET_H
 
 #include "restmethod.h"
-#include "Parameter.h"
+#include "parameter.h"
 #include <QVector>
 #include <QList>
 

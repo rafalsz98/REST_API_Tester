@@ -12,8 +12,8 @@ private slots:
     {
         Post post{};
         post.setUrl("https://httpbin.org/post");
-        post.addParameter("who", "Student");
-        post.addParameter("when", "today");
+//        post.addParameter("who", "Student");
+//        post.addParameter("when", "today");
         post.run();
 
         QSignalSpy spy(&post,SIGNAL(replyReady()));

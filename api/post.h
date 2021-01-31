@@ -2,8 +2,9 @@
 #define POST_H
 
 #include "restmethod.h"
+#include "parameter.h"
 #include <QVector>
-#include <QJsonDocument>
+#include <QVariant>
 
 class API_EXPORT Post : public RESTMethod
 {
@@ -13,9 +14,7 @@ public:
 
 public slots:
     void run() override;
-    void addParameter(const QString& field, const QString& argument);
     void parseParameters(QVariant list) override;
-    void clearParameters();
 };
 
 #endif // POST_H
