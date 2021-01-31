@@ -25,8 +25,11 @@ void RESTMethod::setUrl(const QString& url)
     QUrl qUrl{url};
     if (!qUrl.isValid())
     {
-        throw new std::invalid_argument("URL is not valid");
+//        throw new std::invalid_argument("URL is not valid");
+        qDebug() << "invalid URL given... setting to default...";
+        qUrl = "https://www.google.com";
     }
+
     request.setUrl(qUrl);
     this->url = url;
 }
