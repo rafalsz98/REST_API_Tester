@@ -33,7 +33,8 @@ Item {
             radius:10
         }
         onEditingFinished: () => {
-             item1.editingFinished(txt.text);
+                item1.editingFinished(txt.text)
+                item1.text=txt.text
         }
         leftPadding: 10
         rightPadding: 10

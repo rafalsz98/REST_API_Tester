@@ -99,6 +99,8 @@ ApplicationWindow {
         TabOption{
             methodLoader: methodLoader
             name: "DELETE"
+            address: "tabs/DeleteTab.qml"
+            properties: {"runButton": runButton, "ipField": ipField}
             Layout.preferredHeight: 30
             Layout.preferredWidth: parent.width
         }
