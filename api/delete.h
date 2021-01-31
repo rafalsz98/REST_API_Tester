@@ -2,6 +2,7 @@
 #define DELETE_H
 
 #include "restmethod.h"
+#include "parameter.h"
 
 class API_EXPORT Delete : public RESTMethod
 {
@@ -14,7 +15,7 @@ public:
 
 public slots:
     void run() override;
-    void setParameter(const QString&);
+    void parseParameters(const QString&);
     void parseParameters(QVariant list) override;
 };
 

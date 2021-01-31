@@ -21,12 +21,12 @@ void Delete::run()
     networkManager.deleteResource(request);
 }
 
-void Delete::setParameter(const QString& par)
+void Delete::parseParameters(QVariant var)
 {
-    parameter=par;
-}
-
-void Delete::parseParameters(QVariant list)
-{
-
+    QList<QVariant> list = var.toList();
+    foreach(const QVariant& varParameter, list)
+    {
+        Parameter parameter = varParameter.value<Parameter>();
+        this->parameter = parameter.key;
+    }
 }
