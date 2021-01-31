@@ -14,7 +14,7 @@ private slots:
     {
         Delete del{};
         del.setUrl("https://reqbin.com/");
-        del.setParameter("sample");
+        //del.setParameter("sample");
         del.run();
 
         QSignalSpy spy(&del,SIGNAL(replyReady()));

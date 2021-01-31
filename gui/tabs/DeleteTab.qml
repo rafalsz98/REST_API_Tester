@@ -19,17 +19,32 @@ Item
     Connections
     {
         target: runButton
-        onClicked:()=>
-                  {
-                      //https://reqbin.com/
-                      del.setUrl(ipField.text);
-                      del.parseParameters(parameters.getList());
-                      del.run();
-                  }
+        function onClicked(_)
+        {
+            //https://reqbin.com/
+            del.setUrl(ipField.text);
+            del.parseParameters(parameters.getList());
+            del.run();
+        }
+    }
+
+    Rectangle {
+        id: titleBar
+        width: parent.width
+        height: 30
+        color: "transparent"
+        Text {
+            anchors.verticalCenter: titleBar.verticalCenter
+            anchors.horizontalCenter: titleBar.horizontalCenter
+            text: "DELETE"
+            font.pixelSize: 20
+            color: "#F3F3F3"
+        }
     }
 
     Rectangle {
         id: labels
+        anchors.top: titleBar.bottom
         width: parent.width
         height: 50
         color: "transparent"

@@ -9,22 +9,27 @@ Item {
     property string address: ""
     property var properties
 
-    Rectangle {
+    Button {
+        id: button
         anchors.fill: parent
-        color: "#8D8D92"
-        border.color: "#707070"
-        border.width: 1
-        Text {
-            anchors.centerIn: parent
+        contentItem: Text {
+            horizontalAlignment: Text.AlignHCenter
+            verticalAlignment: Text.AlignVCenter
+
             text: qsTr(name)
             color: "#F3F3F3"
         }
-        MouseArea {
-            id: mouseArea
+        background: Rectangle {
             anchors.fill: parent
-            onClicked: function() {
-                methodLoader.setSource("../" + address, properties)
-            }
+            //color: name == currentlyActive ? "#6E6E72" : "#8D8D92"
+            color: "#8D8D92"
+            border.color: "#707070"
+        }
+
+        onClicked: function() {
+            //currentlyActive = name;
+            //console.log(currentlyActive);
+            methodLoader.setSource("../" + address, properties)
         }
     }
 }

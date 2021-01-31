@@ -3,6 +3,7 @@ import QtQuick.Controls 2.5
 import QtGraphicalEffects 1.15
 import QtQuick.Layouts 1.15
 import ParameterModel 1.0
+import Get 1.0
 
 import "../components"
 
@@ -10,9 +11,44 @@ import "../components"
 Item {
     property var runButton
     property var ipField
+    property var methodLoader
+
+    Get {
+        id: get
+        onReplyReady: function() {
+            console.log("received");
+        }
+        onAlreadyRunning: function() {
+            console.log("already running!");
+        }
+    }
+
+    Connections {
+        target: runButton
+        function onClicked(_) {
+            get.setUrl(ipField.text);
+            get.parseParameters(parameters.getList());
+            get.run();
+        }
+    }
+
+    Rectangle {
+        id: titleBar
+        width: parent.width
+        height: 30
+        color: "transparent"
+        Text {
+            anchors.verticalCenter: titleBar.verticalCenter
+            anchors.horizontalCenter: titleBar.horizontalCenter
+            text: "GET"
+            font.pixelSize: 20
+            color: "#F3F3F3"
+        }
+    }
 
     Rectangle {
         id: labels
+        anchors.top: titleBar.bottom
         width: parent.width
         height: 50
         color: "transparent"

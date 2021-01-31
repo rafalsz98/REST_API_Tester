@@ -19,7 +19,23 @@ Item {
     }
 
     Rectangle {
+        id: titleBar
+        width: parent.width
+        height: 30
+        color: "transparent"
+        Text {
+            anchors.verticalCenter: titleBar.verticalCenter
+            anchors.horizontalCenter: titleBar.horizontalCenter
+            text: "POST"
+            font.pixelSize: 20
+            color: "#F3F3F3"
+        }
+    }
+
+
+    Rectangle {
         id: labels
+        anchors.top: titleBar.bottom
         width: parent.width
         height: 50
         color: "transparent"

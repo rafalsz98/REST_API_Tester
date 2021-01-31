@@ -3,6 +3,7 @@
 #include "parametermodel.h"
 #include "delete.h"
 #include "post.h"
+#include "get.h"
 
 int main(int argc, char *argv[])
 {
@@ -13,6 +14,7 @@ int main(int argc, char *argv[])
     QGuiApplication app(argc, argv);
 
     qmlRegisterType<ParameterModel>("ParameterModel", 1, 0, "ParameterModel");
+    qmlRegisterType<Get>("Get", 1, 0, "Get");
     qmlRegisterType<Delete>("Delete", 1, 0, "Delete");
     qmlRegisterType<Post>("Post", 1, 0, "Post");
 

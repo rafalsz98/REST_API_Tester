@@ -40,6 +40,9 @@ void Get::parseParameters(QVariant var)
     foreach(const QVariant& varParameter, list)
     {
         Parameter parameter = varParameter.value<Parameter>();
+        if (parameter.key == "" || parameter.value == "") {
+            continue;
+        }
         QString parsed = parameter.key + "=" + parameter.value;
         parameters.push_back(parsed);
         qDebug() << parsed;
