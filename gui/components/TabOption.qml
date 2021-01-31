@@ -21,14 +21,12 @@ Item {
         }
         background: Rectangle {
             anchors.fill: parent
-            //color: name == currentlyActive ? "#6E6E72" : "#8D8D92"
-            color: "#8D8D92"
+            color: button.hovered ? "#6E6E72" : "#8D8D92"
+            //color: "#8D8D92"
             border.color: "#707070"
         }
 
         onClicked: function() {
-            //currentlyActive = name;
-            //console.log(currentlyActive);
             methodLoader.setSource("../" + address, properties)
         }
     }
