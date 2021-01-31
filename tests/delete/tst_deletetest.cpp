@@ -12,12 +12,20 @@ public:
 private slots:
     void test()
     {
+        Parameter par{0,"sample",""};
+        QVariant qv,parameters;
+        QList<QVariant> list;
+        qv.setValue(par);
+        list.append(qv);
+        parameters.setValue(list);
+
         Delete del{};
         del.setUrl("https://reqbin.com/");
-        //del.setParameter("sample");
-        del.run();
+        del.parseParameters(parameters);
 
         QSignalSpy spy(&del,SIGNAL(replyReady()));
+
+        del.run();
 
         QVERIFY(spy.wait(1000));
 
