@@ -120,7 +120,7 @@ ApplicationWindow {
             methodLoader: methodLoader
             name: "Results"
             address: "tabs/ResultsTab.qml"
-            properties: {"runButton": runButton, "ipField": ipField}
+            properties: {"statusCodeProperty": "200", "headerProperty": "Date: Sun, 31 Jan 2021 01:00:20 GMT\nContent-Type: application/json\nContent-Length: 571\nDate: Sun, 31 Jan 2021 01:00:20 GMT\nContent-Type: application/json\nContent-Length: 571", "bodyProperty": "\"args\": {},\"data\": \"{\"asdf\":\"fgh\"}\",\"files\": {},\"form\": {},\"headers\": {\"Accept\": \"*/*\",\"Accept-Encoding\": \"deflate, gzip\",\"Content-Length\": \"14\",\"Content-Type\": \"application/json\",\"Host\": \"httpbin.org\",\"User-Agent\": \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.104 Safari/537.36\",\"X-Amzn-Trace-Id\": \"Root=1-60160124-66e992ca4040ee2211ae71d1\"\"json\": {\"asdf\": \"fgh\"},\"origin\": \"206.189.180.4\",\"url\": \"https://httpbin.org/post\""}
             Layout.preferredHeight: 50
             Layout.preferredWidth: parent.width
         }
