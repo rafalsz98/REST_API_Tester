@@ -14,6 +14,7 @@ SOURCES += \
     delete.cpp \
     get.cpp \
     post.cpp \
+    put.cpp \
     restmethod.cpp
 
 
@@ -23,6 +24,7 @@ HEADERS += \
     get.h \
     parameter.h \
     post.h \
+    put.h \
     restmethod.h
 
 
