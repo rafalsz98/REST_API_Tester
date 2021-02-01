@@ -7,6 +7,7 @@
 #include "get.h"
 #include "put.h"
 #include "appmanager.h"
+#include "unittestmodel.h"
 
 int main(int argc, char *argv[])
 {
@@ -25,6 +26,10 @@ int main(int argc, char *argv[])
     qmlRegisterUncreatableType<AppManager>("AppManager", 1, 0, "AppManager", QStringLiteral("Only one per app"));
 
     AppManager manager;
+    
+    qmlRegisterUncreatableType<UnitTestModel>("UnitTestModel", 1, 0, "UnitTestModel", QStringLiteral("Only one per app"));
+
+    UnitTestModel utModel;
 
     QQmlApplicationEngine engine;
     engine.rootContext()->setContextProperty(QStringLiteral("AppManager"), &manager);
