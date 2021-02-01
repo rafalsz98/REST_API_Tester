@@ -8,11 +8,11 @@ import "../components"
 
 
 Item {
-    Column {
-        id: cols
+    Rectangle {
+        id: firstone
+        color: "transparent"
         anchors.fill: parent
         anchors.margins: 10
-        spacing: 3
 
         Rectangle {
             id: statusLabel
@@ -32,7 +32,7 @@ Item {
             id: statusData
             width: parent.width - 50
             height: 33
-            color: "transparent"
+            color: "black"
             anchors.top: statusLabel.bottom;
             x: 20
             TextEdit {
@@ -61,6 +61,7 @@ Item {
             height: 25
             color: "transparent"
             anchors.top: statusData.bottom;
+            anchors.topMargin: 6;
             RowLayout {
                 Text {
                     font.pixelSize: 17
@@ -74,26 +75,32 @@ Item {
             id: headerData
             width: parent.width - 50
             height: 110
-            color: "transparent"
+            color: "black"
             anchors.top: headerLabel.bottom;
             x: 20
-            TextEdit {
-                id: headerDataText
-                readOnly: true
-                focus: true
-                selectByMouse: true
-                font.pointSize: 8;
-                wrapMode: TextEdit.WrapAtWordBoundaryOrAnywhere;
-                color: "white";
-                anchors {
-                    top: parent.top;
-                    topMargin: 8;
-                    left: parent.left;
-                    leftMargin: 10;
-                    right: parent.right;
-                    rightMargin: 10;
+
+            ScrollView {
+                id: scrollheader
+                anchors.fill: parent
+                clip : true
+
+                TextEdit {
+                    id: headerDataText
+                    readOnly: true
+                    focus: true
+                    selectByMouse: true
+                    font.pointSize: 8;
+                    color: "white";
+                    anchors {
+                        top: parent.top;
+                        topMargin: 8;
+                        left: parent.left;
+                        leftMargin: 10;
+                        right: parent.right;
+                        rightMargin: 10;
+                    }
+                    text: AppManager.headers
                 }
-                text: AppManager.headers
             }
         }
 
@@ -103,6 +110,7 @@ Item {
             height: 25
             color: "transparent"
             anchors.top: headerData.bottom;
+            anchors.topMargin: 6;
             RowLayout {
                 Text {
                     font.pixelSize: 17
@@ -115,27 +123,33 @@ Item {
         Rectangle {
             id: bodyData
             width: parent.width - 50
-            height: 70
-            color: "transparent"
+            height: 225
+            color: "black"
             anchors.top: bodyLabel.bottom;
             x: 20
-            TextEdit {
-                id: bodyDataText
-                readOnly: true
-                focus: true
-                selectByMouse: true
-                font.pointSize: 8;
-                wrapMode: TextEdit.WrapAtWordBoundaryOrAnywhere;
-                color: "white";
-                anchors {
-                    top: parent.top;
-                    topMargin: 8;
-                    left: parent.left;
-                    leftMargin: 10;
-                    right: parent.right;
-                    rightMargin: 10;
+
+            ScrollView {
+                id: scrollbody
+                anchors.fill: parent
+                clip: true
+
+                TextEdit {
+                    id: bodyDataText
+                    readOnly: true
+                    focus: true
+                    selectByMouse: true
+                    font.pointSize: 8;
+                    color: "white";
+                    anchors {
+                        top: parent.top;
+                        topMargin: 8;
+                        left: parent.left;
+                        leftMargin: 10;
+                        right: parent.right;
+                        rightMargin: 10;
+                    }
+                    text: AppManager.body + "\n";
                 }
-                text: AppManager.body
             }
         }
     }

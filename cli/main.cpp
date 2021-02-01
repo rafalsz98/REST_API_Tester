@@ -39,11 +39,18 @@ int main(int argc, char *argv[])
     }
     else if (method=="GET" ||method=="POST" ||method=="PUT"  )
     {
-        QTextStream(stdout)<< "\nSet parameters \n<key>\n<value>\n[optional]end\n";
-
         QList<QVariant> list;
         for(int i=0;;i++)
         {
+            QTextStream(stdout)<< "\nDo u want to enter parameters [yes][no]\n";
+            QString choice;
+            QTextStream(stdin) >>choice;
+
+            if(choice=="no")
+                break;
+
+            QTextStream(stdout)<< "\nSet parameters \n<key>\n<value>\n";
+
             Parameter par;
             QVariant qv;
 
@@ -52,10 +59,6 @@ int main(int argc, char *argv[])
             QTextStream(stdin) >> par.value;
             qv.setValue(par);
             list.append(qv);
-
-            QString end;
-            QTextStream(stdin) >> end;
-            if(end=="end")break;
         }
 
         QVariant parameters;
@@ -63,8 +66,8 @@ int main(int argc, char *argv[])
 
         if(method=="GET")
             rest_method=new Get();
-        else if(method=="PUT")
-            rest_method=new Put();
+//        else if(method=="PUT")
+//            rest_method=new Put();
         else
             rest_method=new Post();
 
