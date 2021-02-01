@@ -3,4 +3,5 @@ TEMPLATE = subdirs
 SUBDIRS += \
     delete \
     get \
-    post
+    post \
+    put
