@@ -25,7 +25,8 @@ HEADERS += \
     parameter.h \
     post.h \
     put.h \
-    restmethod.h
+    restmethod.h \
+    unittest.h
 
 
 # Default rules for deployment.
