@@ -18,7 +18,7 @@ int main(int argc, char *argv[])
     QGuiApplication app(argc, argv);
 
     qmlRegisterType<ParameterModel>("ParameterModel", 1, 0, "ParameterModel");
-    qmlRegisterType<UnitTestModel>("UnitTestModel", 1, 0, "UnitTestModel");
+//    qmlRegisterType<UnitTestModel>("UnitTestModel", 1, 0, "UnitTestModel");
 
     qmlRegisterType<Get>("Get", 1, 0, "Get");
     qmlRegisterType<Delete>("Delete", 1, 0, "Delete");
@@ -29,12 +29,14 @@ int main(int argc, char *argv[])
 
     AppManager manager;
     
-//    qmlRegisterUncreatableType<UnitTestModel>("UnitTestModel", 1, 0, "UnitTestModel", QStringLiteral("Only one per app"));
+    qmlRegisterUncreatableType<UnitTestModel>("UnitTestModel", 1, 0, "UnitTestModel", QStringLiteral("Only one per app"));
 
-//    UnitTestModel utModel;
+    UnitTestModel utModel;
 
     QQmlApplicationEngine engine;
     engine.rootContext()->setContextProperty(QStringLiteral("AppManager"), &manager);
+    engine.rootContext()->setContextProperty(QStringLiteral("UnitTestModel"), &utModel);
+
     engine.addImportPath("qrc:/components");
     const QUrl url(QStringLiteral("qrc:/main.qml"));
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,

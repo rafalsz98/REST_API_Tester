@@ -2,39 +2,33 @@ import QtQuick 2.0
 import QtQuick.Controls 2.5
 import QtGraphicalEffects 1.15
 import QtQuick.Layouts 1.15
-import ParameterModel 1.0
-import UnitTestModel 1.0
 
 import "../components"
-
 
 Item
 {
     property var runButton
-    property var ipField
-    property var methodLoader
 
+//    property var t
 
-//    Get {
-//        id: get
-//        onReplyReady: function() {
-//            AppManager.body = get.getBody();
-//            AppManager.headers = get.getHeaders();
-//            AppManager.statusCode = get.getStatusCode();
-//            methodLoader.setSource("ResultsTab.qml", {"x": "x"});
-//        }
-//        onAlreadyRunning: function() {
-//            console.log("already running!");
+//    Connections
+//    {
+//        target: runButton
+//        function onClicked(_)
+//        {
+//            unitestapi.run(UnitTestModel.getAll());
 //        }
 //    }
-
-//    Connections {
-//        target: runButton
-//        function onClicked(_) {
-//            get.setUrl(ipField.text);
-//            get.parseParameters(parameters.getList());
-//            get.run();
+//    Connections
+//    {
+//        target: unitTestapi
+//        function onFinished(arg)
+//        {
+//            t=arg;
 //        }
+//    }
+//    Component.onCompleted: function() {
+////        t=unittestapi.getStatus();
 //    }
 
     Rectangle
@@ -89,7 +83,7 @@ Item
                 text: "+"
                 onClicked: function()
                 {
-                    methods.insertRow();
+                    UnitTestModel.insertRow();
                 }
             }
             RoundButton
@@ -98,7 +92,7 @@ Item
                 icon.width: 15
                 onClicked: function()
                 {
-                    methods.clearRow();
+                    UnitTestModel.clearRow();
                 }
             }
         }
@@ -113,15 +107,11 @@ Item
         clip: false
         spacing: 10
 
-        model: UnitTestModel
-        {
-            id: methods
-        }
-
+        model:UnitTestModel
 
         delegate: ColumnLayout
         {
-            property var paramters_count : methods.parametersCount(model.id)
+            property var parameters_count : UnitTestModel.parametersCount(model.id)
             property var method_id : model.id
 
             RowLayout
@@ -147,6 +137,7 @@ Item
                     Layout.preferredHeight: 40
                     text: model.resStatusCode
                     onEditingFinished: model.resStatusCode = text
+                    color_rec : "green"
                 }
                 RoundButton
                 {
@@ -154,7 +145,7 @@ Item
                     text: "+"
                     onClicked: function()
                     {
-                        methods.insertParameterRow(model.id);
+                        UnitTestModel.insertParameterRow(model.id);
                     }
                 }
                 RoundButton
@@ -164,14 +155,14 @@ Item
                     icon.width: 15
                     onClicked: function()
                     {
-                        methods.clearParameterRow(model.id);
+                        UnitTestModel.clearParameterRow(model.id);
                     }
                 }
             }
 
             Repeater
             {
-                model:(choice.currentText==="DELETE")?1:paramters_count;
+                model:(choice.currentText==="DELETE")?1:parameters_count;
 
                 delegate: RowLayout
                 {
@@ -181,7 +172,7 @@ Item
                         Layout.preferredWidth: 160
                         Layout.preferredHeight: 40
                         text:method_id
-                        onEditingFinished: methods.setParameter(method_id,index,0,text)
+                        onEditingFinished: UnitTestModel.setParameter(method_id,index,0,text)
                     }
                     CustomTextField
                     {
@@ -190,7 +181,7 @@ Item
                         Layout.preferredWidth: 160
                         Layout.preferredHeight: 40
                         text:index
-                        onEditingFinished: methods.setParameter(method_id,index,1,text)
+                        onEditingFinished: UnitTestModel.setParameter(method_id,index,1,text)
                     }
                 }
             }

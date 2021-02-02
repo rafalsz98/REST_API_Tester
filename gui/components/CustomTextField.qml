@@ -9,6 +9,7 @@ Item {
     signal editingFinished(string text)
     property string placeholderText: "Placeholder text"
     property string text: ""
+    property string color_rec: "white"
 
     DropShadow {
         anchors.fill: txt
@@ -30,6 +31,7 @@ Item {
         background: Rectangle
         {
             id: innerRect
+            color:color_rec
             radius:10
         }
         onEditingFinished: () => {
