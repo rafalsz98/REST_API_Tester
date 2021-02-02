@@ -10,5 +10,7 @@
         <file>resources/clear.png</file>
         <file>tabs/PostTab.qml</file>
         <file>tabs/ResultsTab.qml</file>
+        <file>tabs/PutTab.qml</file>
+        <file>tabs/UnitTest.qml</file>
     </qresource>
 </RCC>

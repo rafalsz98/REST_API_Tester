@@ -11,7 +11,7 @@ ApplicationWindow {
     title: qsTr("REST API Tester")
     color: "#36413E"
     Component.onCompleted: function() {
-        methodLoader.setSource("tabs/GetTab.qml", {"runButton": runButton, "ipField": ipField, "methodLoader": methodLoader});
+        methodLoader.setSource("tabs/ResultsTest.qml", {"runButton": runButton, "ipField": ipField, "methodLoader": methodLoader});
     }
 
     Rectangle {
@@ -92,7 +92,7 @@ ApplicationWindow {
             methodLoader: methodLoader
             name: "POST"
             address: "tabs/PostTab.qml"
-            properties: {"runButton": runButton, "ipField": ipField}
+            properties: {"runButton": runButton, "ipField": ipField, "methodLoader": methodLoader}
             Layout.preferredHeight: 30
             Layout.preferredWidth: parent.width
         }
@@ -100,7 +100,7 @@ ApplicationWindow {
             methodLoader: methodLoader
             name: "DELETE"
             address: "tabs/DeleteTab.qml"
-            properties: {"runButton": runButton, "ipField": ipField}
+            properties: {"runButton": runButton, "ipField": ipField, "methodLoader": methodLoader}
             Layout.preferredHeight: 30
             Layout.preferredWidth: parent.width
         }
@@ -108,13 +108,15 @@ ApplicationWindow {
             methodLoader: methodLoader
             name: "PUT"
             address: "tabs/PutTab.qml"
-            properties: {"runButton": runButton, "ipField": ipField}
+            properties: {"runButton": runButton, "ipField": ipField, "methodLoader": methodLoader}
             Layout.preferredHeight: 30
             Layout.preferredWidth: parent.width
         }
         TabOption{
             methodLoader: methodLoader
             name: "Unit Tests"
+            address: "tabs/UnitTest.qml"
+            properties: {"runButton": runButton, "ipField": ipField, "methodLoader": methodLoader}
             Layout.preferredHeight: 30
             Layout.preferredWidth: parent.width
         }

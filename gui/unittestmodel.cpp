@@ -77,16 +77,19 @@ void UnitTestModel::insertRow()
 {
     auto index = list->length();
     beginInsertRows(QModelIndex(), index, index);
-    list->push_back(UnitTest{});
+    list->push_back(UnitTest{index});
     endInsertRows();
 }
 
-void UnitTestModel::insertParameterRow(const int index)
+void UnitTestModel::insertParameterRow(const int listIndex)
 {
-    auto testIndex = list->at(index).parameterList->length();
-    beginInsertRows(QModelIndex(), testIndex, testIndex);
-    list->at(index).parameterList->push_back({0, "", ""});
-    endInsertRows();
+    QModelIndex left=index(listIndex,listIndex);
+
+    auto id= list->at(listIndex).parameterList->length();
+    list->at(listIndex).parameterList->push_back({id, "", ""});
+
+    emit layoutChanged();
+    emit dataChanged(left,left);
 }
 
 void UnitTestModel::clearRow()
@@ -97,12 +100,20 @@ void UnitTestModel::clearRow()
     insertRow();
 }
 
-void UnitTestModel::clearParameterRow(const int index)
+int UnitTestModel::parametersCount(const int index)
 {
-    beginRemoveRows(QModelIndex(), 0, list->at(index).parameterList->length() - 1);
-    list->at(index).parameterList->clear();
-    endRemoveRows();
-    insertRow();
+    return list->at(index).parameterList->length();
+}
+
+void UnitTestModel::clearParameterRow(const int listIndex)
+{
+    QModelIndex left=index(listIndex,listIndex);
+
+    list->at(listIndex).parameterList->clear();
+    list->at(listIndex).parameterList->push_back({list->length(), "", ""});
+
+    emit layoutChanged();
+    emit dataChanged(left,left);
 }
 
 void UnitTestModel::setParameter(const int testIndex, const int paramIndex, const int col, const QString data)
