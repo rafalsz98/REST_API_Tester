@@ -35,3 +35,7 @@ else:unix: LIBS += -L$$OUT_PWD/../api/ -lapi
 
 INCLUDEPATH += $$PWD/../api
 DEPENDPATH += $$PWD/../api
+
+DISTFILES += \
+    tabs/PutTab.qml \
+    tabs/UnitTest.qml

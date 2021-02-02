@@ -40,6 +40,7 @@ public slots:
     void insertRow();
     void insertParameterRow(const int index);
     void clearRow();
+    int parametersCount(const int index);
     void clearParameterRow(const int index);
     void setParameter(const int testIndex, const int paramIndex, const int col, const QString data);
 };

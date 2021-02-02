@@ -5,7 +5,7 @@
 #include <QList>
 #include <QString>
 #include <QByteArray>
-#include "Parameter.h"
+#include "parameter.h"
 
 class ParameterModel : public QAbstractListModel
 {
