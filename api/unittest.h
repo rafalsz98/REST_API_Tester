@@ -6,14 +6,7 @@
 #include <QMetaType>
 
 #include "parameter.h"
-
-enum class httpMethods
-{
-    GET,
-    POST,
-    PUT,
-    DELETE
-};
+#include "httpmethods.h"
 
 struct UnitTest {
     int ID;
@@ -33,7 +26,6 @@ struct UnitTest {
 };
 
 Q_DECLARE_METATYPE(UnitTest)
-Q_DECLARE_METATYPE(httpMethods)
 
 #endif // UNITTEST_H
 
