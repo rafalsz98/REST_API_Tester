@@ -28,7 +28,7 @@ QVariant UnitTestModel::data(const QModelIndex &index, int role) const
     case IPRole:
         return QVariant(parameter.IP);
     case MethodRole:
-        return QVariant(parameter.method);
+        return QVariant::fromValue(parameter.method);
     case ResStatusCodeRole:
         return QVariant(parameter.resStatusCode);
     }
