@@ -22,6 +22,7 @@ HEADERS += \
     api_global.h \
     delete.h \
     get.h \
+    httpmethods.h \
     parameter.h \
     post.h \
     put.h \
