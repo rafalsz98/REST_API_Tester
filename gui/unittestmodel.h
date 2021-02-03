@@ -6,13 +6,14 @@
 #include <QString>
 #include <QByteArray>
 #include "unittest.h"
+#include "unittestmanager.h"
 
 class UnitTestModel : public QAbstractListModel
 {
     Q_OBJECT
     QList<UnitTest>* list;
     int currentId = 1;
-
+    UnitTestManager* unitTestManager = &UnitTestManager::instance();
 public:
     explicit UnitTestModel(QObject *parent = nullptr);
 
@@ -43,6 +44,7 @@ public slots:
     int parametersCount(const int index);
     void clearParameterRow(const int index);
     void setParameter(const int testIndex, const int paramIndex, const int col, const QString data);
+    QVariant getList();
 };
 
 #endif // UNITTESTMODEL_H

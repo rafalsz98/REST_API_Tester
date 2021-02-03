@@ -78,6 +78,7 @@ void UnitTestModel::insertRow()
     auto index = list->length();
     beginInsertRows(QModelIndex(), index, index);
     list->push_back(UnitTest{index});
+    unitTestManager->addUnitTest();
     endInsertRows();
 }
 
@@ -96,6 +97,8 @@ void UnitTestModel::clearRow()
 {
     beginRemoveRows(QModelIndex(), 0, list->length() - 1);
     list->clear();
+    unitTestManager->clearUnitTests();
+    unitTestManager->addUnitTest();
     endRemoveRows();
     insertRow();
 }
@@ -126,6 +129,13 @@ void UnitTestModel::setParameter(const int testIndex, const int paramIndex, cons
         param.value = data;
 
     list->at(testIndex).parameterList->replace(paramIndex, param);
+}
+
+QVariant UnitTestModel::getList()
+{
+    QVariant var;
+    var.setValue(*list);
+    return var;
 }
 
 

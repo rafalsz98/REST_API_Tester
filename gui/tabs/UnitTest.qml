@@ -11,14 +11,14 @@ Item
 
 //    property var t
 
-//    Connections
-//    {
-//        target: runButton
-//        function onClicked(_)
-//        {
-//            unitestapi.run(UnitTestModel.getAll());
-//        }
-//    }
+    Connections
+    {
+        target: runButton
+        function onClicked(_)
+        {
+            UnitTestManager.runTests(UnitTestModel.getList());
+        }
+    }
 //    Connections
 //    {
 //        target: unitTestapi

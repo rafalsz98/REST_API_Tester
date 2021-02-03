@@ -9,6 +9,7 @@ CONFIG += c++11
 SOURCES += \
         main.cpp \
         parametermodel.cpp \
+        unittestmanager.cpp \
         unittestmodel.cpp
 
 RESOURCES += qml.qrc
@@ -27,6 +28,7 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 HEADERS += \
     appmanager.h \
     parametermodel.h \
+    unittestmanager.h \
     unittestmodel.h
 
 win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../api/release/ -lapi
