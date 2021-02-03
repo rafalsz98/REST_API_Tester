@@ -93,4 +93,5 @@ void UnitTestManager::processReplies()
     }
     allocatedMethods.clear();
     qDebug() << m_unitTestResults;
+    emit finished();
 }

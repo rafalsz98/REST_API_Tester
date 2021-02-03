@@ -20,6 +20,7 @@ public:
 
 
 signals:
+    void finished();
 
 public slots:
     void replyReady();
