@@ -59,6 +59,7 @@ void UnitTestManager::runTests(QVariant list)
             method = new Get();
             break;
         case httpMethods::POST:
+            qDebug() << "post";
             method = new Post();
             break;
         case httpMethods::PUT:
@@ -89,7 +90,6 @@ void UnitTestManager::processReplies()
                 ? 0
                 : 1;
         i++;
-        //delete pair.first;
     }
     allocatedMethods.clear();
     qDebug() << m_unitTestResults;

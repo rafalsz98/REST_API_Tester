@@ -9,6 +9,7 @@ Item
 {
     property var runButton
     property var returned_codes
+    property var methodLoader
 
     Connections
     {
@@ -21,9 +22,10 @@ Item
     Connections
     {
         target: UnitTestManager
-        function finished()
+        function onFinished()
         {
             returned_codes=UnitTestManager.getUnitTestResults();
+            methodLoader.setSource("UnitTest.qml", {"runButton": runButton, "methodLoader": methodLoader});
         }
     }
     Component.onCompleted: function()
@@ -111,6 +113,7 @@ Item
             width: parent.width
             property var parameters_count : UnitTestModel.parametersCount(model.id)
             property var method_id : model.id
+            property var xd: model
 
             RowLayout
             {
@@ -121,7 +124,7 @@ Item
                     id:choice
                     Layout.leftMargin: 10
                     model: ["GET", "POST", "PUT","DELETE"]
-                    onCurrentIndexChanged: model.method=currentText
+                    onCurrentIndexChanged: xd.method = currentIndex
                 }
 
                 CustomTextField

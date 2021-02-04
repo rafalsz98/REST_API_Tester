@@ -116,7 +116,7 @@ ApplicationWindow {
             methodLoader: methodLoader
             name: "Unit Tests"
             address: "tabs/UnitTest.qml"
-            properties: {"runButton": runButton}
+            properties: {"runButton": runButton, "methodLoader": methodLoader}
             Layout.preferredHeight: 30
             Layout.preferredWidth: parent.width
         }

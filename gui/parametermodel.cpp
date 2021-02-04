@@ -40,8 +40,10 @@ bool ParameterModel::setData(const QModelIndex &index, const QVariant &value, in
         switch (role) {
         case KeyRole:
             parameter.key = value.toString();
+            break;
         case ValueRole:
             parameter.value = value.toString();
+            break;
         }
         list.replace(index.row(), parameter);
         emit dataChanged(index, index, QVector<int>() << role);

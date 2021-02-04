@@ -43,10 +43,13 @@ bool UnitTestModel::setData(const QModelIndex &index, const QVariant &value, int
         switch (role) {
         case IPRole:
             unitTest.IP = value.toString();
+            break;
         case MethodRole:
             unitTest.method = value.value<httpMethods>();
+            break;
         case ResStatusCodeRole:
             unitTest.resStatusCode = value.toInt();
+            break;
         }
         list->replace(index.row(), unitTest);
         emit dataChanged(index, index, QVector<int>() << role);
@@ -144,9 +147,6 @@ QVariant UnitTestModel::getList()
     var.setValue(*list);
     return var;
 }
-
-
-
 
 
 
