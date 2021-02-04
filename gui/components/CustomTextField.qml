@@ -10,6 +10,7 @@ Item {
     property string placeholderText: "Placeholder text"
     property string text: ""
     property string color_rec: "white"
+    property string color_text: "#707070"
 
     DropShadow {
         anchors.fill: txt
@@ -27,11 +28,11 @@ Item {
         placeholderText: item1.placeholderText
         text: item1.text
         placeholderTextColor: "#707070"
-        color: "#707070"
+        color: item1.color_text
         background: Rectangle
         {
             id: innerRect
-            color:color_rec
+            color:item1.color_rec
             radius:10
         }
         onEditingFinished: () => {

@@ -131,6 +131,13 @@ void UnitTestModel::setParameter(const int testIndex, const int paramIndex, cons
     list->at(testIndex).parameterList->replace(paramIndex, param);
 }
 
+QString UnitTestModel::getParameter(const int testIndex, const int paramIndex, const int col)
+{
+    Parameter param{list->at(testIndex).parameterList->at(paramIndex)};
+
+    return (col==1)?param.value:param.key;
+}
+
 QVariant UnitTestModel::getList()
 {
     QVariant var;

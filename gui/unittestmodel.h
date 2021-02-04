@@ -44,6 +44,8 @@ public slots:
     int parametersCount(const int index);
     void clearParameterRow(const int index);
     void setParameter(const int testIndex, const int paramIndex, const int col, const QString data);
+    QString getParameter(const int testIndex, const int paramIndex, const int col);
+
     QVariant getList();
 };
 

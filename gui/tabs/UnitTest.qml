@@ -8,8 +8,7 @@ import "../components"
 Item
 {
     property var runButton
-
-//    property var t
+    property var returned_codes
 
     Connections
     {
@@ -19,17 +18,18 @@ Item
             UnitTestManager.runTests(UnitTestModel.getList());
         }
     }
-//    Connections
-//    {
-//        target: unitTestapi
-//        function onFinished(arg)
-//        {
-//            t=arg;
-//        }
-//    }
-//    Component.onCompleted: function() {
-////        t=unittestapi.getStatus();
-//    }
+    Connections
+    {
+        target: UnitTestManager
+        function finished()
+        {
+            returned_codes=UnitTestManager.getUnitTestResults();
+        }
+    }
+    Component.onCompleted: function()
+    {
+        returned_codes=UnitTestManager.getUnitTestResults();
+    }
 
     Rectangle
     {
@@ -57,34 +57,31 @@ Item
         color: "transparent"
         RowLayout
         {
-            width: parent.width
-            spacing: 0
+            spacing: 10
+
             Text
             {
                 Layout.leftMargin: 10
+                Layout.fillWidth:true
                 font.pixelSize: 17
-                text: "METHOD"
+                text: "Add method"
                 color: "#F3F3F3"
             }
-            Text
+
+            RoundButton
             {
-                font.pixelSize: 17
-                text: "IP"
-                color: "#F3F3F3"
-            }
-            Text
-            {
-                font.pixelSize: 17
-                text: "STATUS CODE?"
-                color: "#F3F3F3"
-            }
-            //ADDING ROWS OF METHODS
-            RoundButton {
                 text: "+"
                 onClicked: function()
                 {
                     UnitTestModel.insertRow();
                 }
+            }
+            Text
+            {
+                Layout.fillWidth:true
+                font.pixelSize: 17
+                text: "Remove methods"
+                color: "#F3F3F3"
             }
             RoundButton
             {
@@ -104,18 +101,21 @@ Item
         anchors.top: labels.bottom
         width: parent.width
         height: parent.height
-        clip: false
+        clip: true
         spacing: 10
 
         model:UnitTestModel
 
         delegate: ColumnLayout
         {
+            width: parent.width
             property var parameters_count : UnitTestModel.parametersCount(model.id)
             property var method_id : model.id
 
             RowLayout
             {
+                Layout.preferredWidth: parent.width
+
                 ComboBox
                 {
                     id:choice
@@ -126,18 +126,21 @@ Item
 
                 CustomTextField
                 {
-                    Layout.preferredWidth: 100
+                    placeholderText:"ENTER IP"
+                    Layout.fillWidth:true
                     Layout.preferredHeight: 40
                     text:model.ip
                     onEditingFinished: model.ip =text
                 }
                 CustomTextField
                 {
-                    Layout.preferredWidth: 100
+                    placeholderText:"ENTER EXPECTED STATUS CODE"
+                    Layout.fillWidth:true
                     Layout.preferredHeight: 40
                     text: model.resStatusCode
                     onEditingFinished: model.resStatusCode = text
-                    color_rec : "green"
+                    color_rec : (returned_codes[method_id]===1)?"green":((returned_codes[method_id]===0)?"red":"white");
+                    color_text: (returned_codes[method_id]===-1)?"#707070":"white";
                 }
                 RoundButton
                 {
@@ -158,29 +161,35 @@ Item
                         UnitTestModel.clearParameterRow(model.id);
                     }
                 }
+                Layout.rightMargin:10
+
             }
 
             Repeater
             {
                 model:(choice.currentText==="DELETE")?1:parameters_count;
+                Layout.fillWidth:true
 
                 delegate: RowLayout
                 {
                     CustomTextField
                     {
+                        placeholderText:"KEY"
                         Layout.leftMargin: 40
-                        Layout.preferredWidth: 160
                         Layout.preferredHeight: 40
-                        text:method_id
+                        Layout.fillWidth:true
+                        text:UnitTestModel.getParameter(method_id,index,0)
                         onEditingFinished: UnitTestModel.setParameter(method_id,index,0,text)
+                        Layout.rightMargin:10
                     }
                     CustomTextField
                     {
+                        placeholderText:"VALUE"
                         visible: (choice.currentText=="DELETE")?false:true
-                        Layout.leftMargin: 10
-                        Layout.preferredWidth: 160
+                        Layout.fillWidth:true
+                        Layout.rightMargin: 40
                         Layout.preferredHeight: 40
-                        text:index
+                        text:UnitTestModel.getParameter(method_id,index,1)
                         onEditingFinished: UnitTestModel.setParameter(method_id,index,1,text)
                     }
                 }
