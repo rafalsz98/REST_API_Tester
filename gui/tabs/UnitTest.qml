@@ -139,8 +139,8 @@ Item
                     Layout.preferredHeight: 40
                     text: model.resStatusCode
                     onEditingFinished: model.resStatusCode = text
-                    color_rec : (returned_codes[method_id]===1)?"green":((returned_codes[method_id]===0)?"red":"white");
-                    color_text: (returned_codes[method_id]===-1)?"#707070":"white";
+                    color_rec : (returned_codes[method_id]===1)?"red":((returned_codes[method_id]===0)?"green":"white");
+                    color_text: (returned_codes[method_id]===1 || returned_codes[method_id]===0 )?"white":"#707070";
                 }
                 RoundButton
                 {
