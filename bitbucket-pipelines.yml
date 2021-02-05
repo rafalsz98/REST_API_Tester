@@ -7,3 +7,16 @@ pipelines:
           - mkdir build-project && pushd build-project
           - qmake ../
           - make -j4
+          - pushd tests/delete
+          -   LD_LIBRARY_PATH=../../api ./delete -o test_detail.xml,xunitxml
+          - popd
+          - pushd tests/get
+          -   LD_LIBRARY_PATH=../../api ./get -o test_detail.xml,xunitxml
+          - popd
+          - pushd tests/post
+          -   LD_LIBRARY_PATH=../../api ./post -o test_detail.xml,xunitxml
+          - popd
+          - pushd tests/put
+          -   LD_LIBRARY_PATH=../../api ./put -o test_detail.xml,xunitxml
+          - popd
+          
